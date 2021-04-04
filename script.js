@@ -64,11 +64,11 @@ function drawSnake(snake, color) {
     }
 }
 
-apple = [2, 2]; // first apple's coordinates
+apple = [15, 10]; // first apple's coordinates
 
 // draw apple
 function drawApple(apple, color) {
-    drawRect(apple[0], apple[1], blockSize, blockSize, color);
+    drawRect(getX(apple[0]), getY(apple[1]), blockSize, blockSize, color);
 }
 // initial directions of moving snake
 goUp = false;
@@ -151,10 +151,25 @@ function movingSnake(snake) {
         snake.pop();
     }
 }
+// check for eaten apple. return true/false
+function isEaten(item) {
+    if (snake[0][0] == item[0] && snake[0][1] == item[1]) {
+        return true;
+    }
+}
+// increase snake's length
+function increaseSnake() {
+    if (isEaten(apple)) {
+        snake.push([apple[0], apple[1]]);
+    }
+}
+
 //test
 
 setInterval(function() {
     drawPlayground('black');
     drawSnake(snake, 'cyan');
+    drawApple(apple, 'lightgreen');
+    increaseSnake();
     movingSnake(snake);
-}, 150);
+}, 15);
