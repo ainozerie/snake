@@ -17,21 +17,28 @@ function drawPlayground(color) {
 blockSize = 50;
 blockMargin = 1;
 
-// separate playground on fields and return a coordinate to draw a rect of snake on X axe
+// get info about quantity of block on playground
+function blockNumberX() {
+    return Math.trunc(canvasWidth / (blockSize + blockMargin));
+}
+
+function blockNumberY() {
+    return Math.trunc(canvasHeight / (blockSize + blockMargin));
+}
+
+// return a coordinate to draw a rect of snake on X and Y axes
 function getX(coordinateX) {
     canvasWidth = 800;
-    blockNumberX = Math.trunc(canvasWidth / (blockSize + blockMargin));
-    if (coordinateX >= blockNumberX) {
+    if (coordinateX >= blockNumberX()) {
         coordinateX = 0;
     }
     marginX = (canvasWidth % (blockSize + blockMargin)) / 2;
     return (marginX + coordinateX * (blockSize + blockMargin));
 }
-// separate playground on fields and return a coordinate to draw a rect of snake on Y axe
+
 function getY(coordinateY) {
     canvasHeight = 800;
-    blockNumberY = Math.trunc(canvasHeight / (blockSize + blockMargin));
-    if (coordinateY >= blockNumberY) {
+    if (coordinateY >= blockNumberY()) {
         coordinateY = 0;
     }
     marginY = (canvasHeight % (blockSize + blockMargin)) / 2;
@@ -50,3 +57,23 @@ function drawSnake(snake, color) {
         drawRect(getX(snake[i][0]), getY(snake[i][1]), blockSize, blockSize, color);
     }
 }
+
+apple = [2, 2]; // first apple's coordinates
+
+// draw apple
+function drawApple(apple, color) {
+    drawRect(apple[0], apple[1], blockSize, blockSize, color);
+}
+
+
+
+
+
+
+
+
+
+
+
+//drawPlayground('black');
+//drawSnake(snake, 'cyan');
