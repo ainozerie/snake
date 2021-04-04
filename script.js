@@ -32,6 +32,9 @@ function getX(coordinateX) {
     if (coordinateX >= blockNumberX()) {
         coordinateX = 0;
     }
+    if (coordinateX < 0) {
+        coordinateX = blockNumberX();
+    }
     marginX = (canvasWidth % (blockSize + blockMargin)) / 2;
     return (marginX + coordinateX * (blockSize + blockMargin));
 }
@@ -40,6 +43,9 @@ function getY(coordinateY) {
     canvasHeight = 800;
     if (coordinateY >= blockNumberY()) {
         coordinateY = 0;
+    }
+    if (coordinateY < 0) {
+        coordinateY = blockNumberY;
     }
     marginY = (canvasHeight % (blockSize + blockMargin)) / 2;
     return (marginY + coordinateY * (blockSize + blockMargin));
@@ -64,23 +70,76 @@ apple = [2, 2]; // first apple's coordinates
 function drawApple(apple, color) {
     drawRect(apple[0], apple[1], blockSize, blockSize, color);
 }
+// initial directions of moving snake
+goUp = false;
+goDown = false;
+goLeft = true;
+goRight = false;
 // add event handler
 window.addEventListener('keydown', function(event) {
-    switch (event.code) {
-        case 'ArrowUp':
-            alert('Up');
-            break;
-        case 'ArrowDown':
-            alert('Down');
-            break;
-        case 'ArrowLeft':
-            alert('Left');
-            break;
-        case 'ArrowRight':
-            alert('Right');
-            break;
+        switch (event.code) {
+            case 'ArrowUp':
+                alert('Up');
+                break;
+            case 'ArrowDown':
+                alert('Down');
+                break;
+            case 'ArrowLeft':
+                alert('Left');
+                break;
+            case 'ArrowRight':
+                alert('Right');
+                break;
+        }
+    })
+    // move snake
+function movingSnake(snake) {
+    if (goUp == true) {
+        newY = snake[0][1] - 1;
+        if (newY < 0) {
+            newY = blockNumberY();
+        }
+        if (newY > blockNumberY()) {
+            newY = 0;
+        }
+        snake.unshift(snake[0][0], newY);
+        snake.pop();
     }
-})
+    if (goDown == true) {
+        newY = snake[0][1] + 1;
+        if (newY < 0) {
+            newY = blockNumberY();
+        }
+        if (newY > blockNumberY()) {
+            newY = 0;
+        }
+        snake.unshift(snake[0][0], newY);
+        snake.pop();
+    }
+    if (goLeft == true) {
+        newX = snake[0][0] - 1;
+        if (newX < 0) {
+            newX = blockNumberX();
+        }
+        if (newX > blockNumberX()) {
+            newX = 0;
+        }
+        snake.unshift(newX, snake[0][1]);
+        snake.pop();
+    }
+    if (goRight == true) {
+        newX = snake[0][0] + 1;
+        if (newX < 0) {
+            newX = blockNumberX();
+        }
+        if (newX > blockNumberX()) {
+            newX = 0;
+        }
+        snake.unshift(newX, snake[0][1]);
+        snake.pop();
+    }
+}
+
 
 
 
