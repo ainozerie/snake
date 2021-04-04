@@ -28,7 +28,7 @@ function blockNumberY() {
 
 // return a coordinate to draw a rect of snake on X and Y axes
 function getX(coordinateX) {
-    canvasWidth = 800;
+    canvasWidth = playgroundSize[0];
     if (coordinateX >= blockNumberX()) {
         coordinateX = 0;
     }
@@ -40,7 +40,7 @@ function getX(coordinateX) {
 }
 
 function getY(coordinateY) {
-    canvasHeight = 800;
+    canvasHeight = playgroundSize[1];
     if (coordinateY >= blockNumberY()) {
         coordinateY = 0;
     }
@@ -163,7 +163,13 @@ function increaseSnake() {
         snake.push([apple[0], apple[1]]);
     }
 }
-
+// get new coordinates for new apple after eaten one
+function nextApple() {
+    if (isEaten(apple)) {
+        apple[0] = Math.floor(Math.random() * blockNumberX());
+        apple[1] = Math.floor(Math.random() * blockNumberY());
+    }
+}
 //test
 
 setInterval(function() {
@@ -171,5 +177,6 @@ setInterval(function() {
     drawSnake(snake, 'cyan');
     drawApple(apple, 'lightgreen');
     increaseSnake();
+    nextApple();
     movingSnake(snake);
-}, 15);
+}, 150);
