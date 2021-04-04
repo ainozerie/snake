@@ -8,8 +8,10 @@ function drawRect(x, y, width, height, color) {
 }
 
 // draw a playground 800*800
+playgroundSize = [800, 800];
+
 function drawPlayground(color) {
-    drawRect(0, 0, 800, 800, color);
+    drawRect(0, 0, playgroundSize[0], playgroundSize[1], color);
 }
 
 blockSize = 50;
@@ -25,7 +27,7 @@ function getX(coordinateX) {
     marginX = (canvasWidth % (blockSize + blockMargin)) / 2;
     return (marginX + coordinateX * (blockSize + blockMargin));
 }
-// separate playground on fields and return a coordinate to draw a rect of snake on X axe
+// separate playground on fields and return a coordinate to draw a rect of snake on Y axe
 function getY(coordinateY) {
     canvasHeight = 800;
     blockNumberY = Math.trunc(canvasHeight / (blockSize + blockMargin));
@@ -36,5 +38,15 @@ function getY(coordinateY) {
     return (marginY + coordinateY * (blockSize + blockMargin));
 }
 
-drawPlayground('black');
-drawRect(getX(3), getY(2), blockSize, blockSize, 'cyan');
+snake = [
+    [3, 4],
+    [4, 4],
+    [5, 4]
+]; // snake's initial size
+
+// draw a snake
+function drawSnake(snake, color) {
+    for (let i = 0; i < snake.length; i++) {
+        drawRect(getX(snake[i][0]), getY(snake[i][1]), blockSize, blockSize, color);
+    }
+}
