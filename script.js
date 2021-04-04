@@ -79,16 +79,28 @@ goRight = false;
 window.addEventListener('keydown', function(event) {
         switch (event.code) {
             case 'ArrowUp':
-                alert('Up');
+                goUp = true;
+                goDown = false;
+                goLeft = false;
+                goRight = false;
                 break;
             case 'ArrowDown':
-                alert('Down');
+                goUp = false;
+                goDown = true;
+                goLeft = false;
+                goRight = false;
                 break;
             case 'ArrowLeft':
-                alert('Left');
+                goUp = false;
+                goDown = false;
+                goLeft = true;
+                goRight = false;
                 break;
             case 'ArrowRight':
-                alert('Right');
+                goUp = false;
+                goDown = false;
+                goLeft = false;
+                goRight = true;
                 break;
         }
     })
@@ -139,7 +151,16 @@ function movingSnake(snake) {
         snake.pop();
     }
 }
+// changing coordinates fo moving snake
+function changeDirection() {
+    if (goUp == true) {
+        goDown == false;
+        goLeft == false;
+        goRight == false;
 
+    }
+
+}
 
 
 
