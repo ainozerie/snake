@@ -64,7 +64,23 @@ apple = [2, 2]; // first apple's coordinates
 function drawApple(apple, color) {
     drawRect(apple[0], apple[1], blockSize, blockSize, color);
 }
-
+// add event handler
+window.addEventListener('keydown', function(event) {
+    switch (event.code) {
+        case 'ArrowUp':
+            alert('Up');
+            break;
+        case 'ArrowDown':
+            alert('Down');
+            break;
+        case 'ArrowLeft':
+            alert('Left');
+            break;
+        case 'ArrowRight':
+            alert('Right');
+            break;
+    }
+})
 
 
 
