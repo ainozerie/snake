@@ -14,7 +14,7 @@ function drawPlayground(color) {
     drawRect(0, 0, playgroundSize[0], playgroundSize[1], color);
 }
 
-blockSize = 50;
+blockSize = 10;
 blockMargin = 1;
 
 // get info about quantity of block on playground
@@ -73,7 +73,7 @@ function drawApple(apple, color) {
 // initial directions of moving snake
 goUp = false;
 goDown = false;
-goLeft = true;
+goLeft = false;
 goRight = false;
 // add event handler
 window.addEventListener('keydown', function(event) {
@@ -114,7 +114,7 @@ function movingSnake(snake) {
         if (newY > blockNumberY()) {
             newY = 0;
         }
-        snake.unshift(snake[0][0], newY);
+        snake.unshift([snake[0][0], newY]);
         snake.pop();
     }
     if (goDown == true) {
@@ -125,7 +125,7 @@ function movingSnake(snake) {
         if (newY > blockNumberY()) {
             newY = 0;
         }
-        snake.unshift(snake[0][0], newY);
+        snake.unshift([snake[0][0], newY]);
         snake.pop();
     }
     if (goLeft == true) {
@@ -136,7 +136,7 @@ function movingSnake(snake) {
         if (newX > blockNumberX()) {
             newX = 0;
         }
-        snake.unshift(newX, snake[0][1]);
+        snake.unshift([newX, snake[0][1]]);
         snake.pop();
     }
     if (goRight == true) {
@@ -147,10 +147,20 @@ function movingSnake(snake) {
         if (newX > blockNumberX()) {
             newX = 0;
         }
-        snake.unshift(newX, snake[0][1]);
+        snake.unshift([newX, snake[0][1]]);
         snake.pop();
     }
 }
+
+
+
+
+
+
 //test
-drawPlayground('black');
-drawSnake(snake, 'cyan');
+
+//setInterval(function() {
+//    drawPlayground('black');
+//    drawSnake(snake, 'cyan');
+//    movingSnake(snake);
+//}, 100);
