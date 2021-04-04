@@ -14,7 +14,7 @@ function drawPlayground(color) {
     drawRect(0, 0, playgroundSize[0], playgroundSize[1], color);
 }
 
-blockSize = 10;
+blockSize = 20;
 blockMargin = 1;
 
 // get info about quantity of block on playground
@@ -151,16 +151,10 @@ function movingSnake(snake) {
         snake.pop();
     }
 }
-
-
-
-
-
-
 //test
 
-//setInterval(function() {
-//    drawPlayground('black');
-//    drawSnake(snake, 'cyan');
-//    movingSnake(snake);
-//}, 100);
+setInterval(function() {
+    drawPlayground('black');
+    drawSnake(snake, 'cyan');
+    movingSnake(snake);
+}, 150);
