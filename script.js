@@ -151,25 +151,6 @@ function movingSnake(snake) {
         snake.pop();
     }
 }
-// changing coordinates fo moving snake
-function changeDirection() {
-    if (goUp == true) {
-        goDown == false;
-        goLeft == false;
-        goRight == false;
-
-    }
-
-}
-
-
-
-
-
-
-
-
-
-
-//drawPlayground('black');
-//drawSnake(snake, 'cyan');
+//test
+drawPlayground('black');
+drawSnake(snake, 'cyan');
