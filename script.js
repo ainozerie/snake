@@ -14,7 +14,7 @@ function drawPlayground(color) {
     drawRect(0, 0, playgroundSize[0], playgroundSize[1], color);
 }
 
-blockSize = 20;
+blockSize = 40;
 blockMargin = 1;
 
 // get info about quantity of block on playground
@@ -161,22 +161,41 @@ function isEaten(item) {
 function increaseSnake() {
     if (isEaten(apple)) {
         snake.push([apple[0], apple[1]]);
+        currentColor = nextColor;
     }
+
+
 }
 // get new coordinates for new apple after eaten one
 function nextApple() {
     if (isEaten(apple)) {
         apple[0] = Math.floor(Math.random() * blockNumberX());
         apple[1] = Math.floor(Math.random() * blockNumberY());
+        nextColor = getColor();
     }
 }
+// colors for apple and snake
+colors = ['crimson', 'deeppink', 'gold', 'magenta', 'lime', 'aqua', 'springgreen', 'deepskyblue', 'yellow', 'tomato', 'steelblue', 'navi', 'orange'];
+
+function getColor() {
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+currentColor = 'aqua';
+nextColor = 'lime';
+
 //test
 
-setInterval(function() {
-    drawPlayground('black');
-    drawSnake(snake, 'cyan');
-    drawApple(apple, 'lightgreen');
-    increaseSnake();
-    nextApple();
-    movingSnake(snake);
-}, 150);
+
+
+function gameTime() {
+    setInterval(function() {
+        drawPlayground('black');
+        drawSnake(snake, currentColor);
+        drawApple(apple, nextColor);
+        increaseSnake();
+        nextApple();
+        movingSnake(snake);
+    }, 150);
+}
+
+gameTime();
