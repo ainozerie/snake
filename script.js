@@ -8,7 +8,7 @@ function drawRect(x, y, width, height, color) {
 }
 
 // draw a playground 800*800
-playgroundSize = [800, 800];
+playgroundSize = [600, 600];
 
 function drawPlayground(color) {
     drawRect(0, 0, playgroundSize[0], playgroundSize[1], color);
@@ -64,7 +64,7 @@ function drawSnake(snake, color) {
     }
 }
 
-apple = [15, 10]; // first apple's coordinates
+apple = [10, 10]; // first apple's coordinates
 
 // draw apple
 function drawApple(apple, color) {
@@ -175,7 +175,7 @@ function nextApple() {
     }
 }
 // colors for apple and snake
-colors = ['crimson', 'deeppink', 'gold', 'magenta', 'lime', 'aqua', 'springgreen', 'deepskyblue', 'yellow', 'tomato', 'steelblue', 'navi', 'orange'];
+colors = ['crimson', 'deeppink', 'gold', 'magenta', 'lime', 'aqua', 'springgreen', 'deepskyblue', 'yellow', 'tomato', 'steelblue', 'navy', 'orange'];
 
 function getColor() {
     return colors[Math.floor(Math.random() * colors.length)];
@@ -195,7 +195,7 @@ function gameTime() {
         increaseSnake();
         nextApple();
         movingSnake(snake);
-    }, 150);
+    }, 120);
 }
 
 gameTime();
