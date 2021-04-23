@@ -1,5 +1,5 @@
-var canvas = document.getElementById('playground');
-var ctx = canvas.getContext('2d');
+const canvas = document.getElementById('playground');
+const ctx = canvas.getContext('2d');
 
 // draw a rect
 function drawRect(x, y, width, height, color) {
@@ -8,14 +8,14 @@ function drawRect(x, y, width, height, color) {
 }
 
 // draw a playground 800*800
-playgroundSize = [600, 600];
+const playgroundSize = [600, 600];
 
 function drawPlayground(color) {
     drawRect(0, 0, playgroundSize[0], playgroundSize[1], color);
 }
 
-blockSize = 40;
-blockMargin = 1;
+const blockSize = 40;
+const blockMargin = 1;
 
 // get info about quantity of block on playground
 function blockNumberX() {
@@ -25,8 +25,11 @@ function blockNumberX() {
 function blockNumberY() {
     return Math.trunc(canvasHeight / (blockSize + blockMargin));
 }
-
 // return a coordinate to draw a rect of snake on X and Y axes
+let canvasWidth;
+let marginX;
+let marginY
+
 function getX(coordinateX) {
     canvasWidth = playgroundSize[0];
     if (coordinateX >= blockNumberX()) {
@@ -51,7 +54,7 @@ function getY(coordinateY) {
     return (marginY + coordinateY * (blockSize + blockMargin));
 }
 
-snake = [
+let snake = [
     [3, 4],
     [4, 4],
     [5, 4]
@@ -64,18 +67,22 @@ function drawSnake(snake, color) {
     }
 }
 
-apple = [4, 5]; // first apple's coordinates
+let apple = [8, 9]; // first apple's coordinates
 
 // draw apple
 function drawApple(apple, color) {
     drawRect(getX(apple[0]), getY(apple[1]), blockSize, blockSize, color);
 }
 // initial directions of moving snake
-goUp = false;
-goDown = false;
-goLeft = false;
-goRight = false;
+let goUp = false;
+let goDown = false;
+let goLeft = false;
+let goRight = false;
 // add event handler
+
+let newX;
+let newY;
+
 window.addEventListener('keydown', function(event) {
         switch (event.code) {
             case 'ArrowUp':
@@ -158,6 +165,9 @@ function isEaten(item) {
     }
 }
 // increase snake's length
+let currentColor;
+let nextColor;
+
 function increaseSnake() {
     if (isEaten(apple)) {
         snake.push([apple[0], apple[1]]);
@@ -175,7 +185,7 @@ function nextApple() {
     }
 }
 // colors for apple and snake
-colors = ['crimson', 'deeppink', 'gold', 'magenta', 'lime', 'aqua', 'springgreen', 'deepskyblue', 'yellow', 'tomato', 'steelblue', 'navy', 'orange'];
+let colors = ['crimson', 'deeppink', 'gold', 'magenta', 'lime', 'aqua', 'springgreen', 'deepskyblue', 'yellow', 'tomato', 'steelblue', 'navy', 'orange'];
 
 function getColor() {
     return colors[Math.floor(Math.random() * colors.length)];
