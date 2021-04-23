@@ -64,7 +64,7 @@ function drawSnake(snake, color) {
     }
 }
 
-apple = [10, 10]; // first apple's coordinates
+apple = [4, 5]; // first apple's coordinates
 
 // draw apple
 function drawApple(apple, color) {
@@ -183,17 +183,30 @@ function getColor() {
 currentColor = 'aqua';
 nextColor = 'lime';
 
-//test
+// picture current and max score that stores in localStorage 
+function setScore() {
+    if (localStorage.getItem('maxScore') && localStorage.getItem('maxScore') > (snake.length - 3)) {
+        document.getElementById('score').textContent = 'Max score: ' + localStorage.getItem('maxScore') + ' Score: ' + (snake.length - 3);
+    } else if (localStorage.getItem('maxScore') && localStorage.getItem('maxScore') <= (snake.length - 3)) {
+        document.getElementById('score').textContent = 'Max score: ' + (snake.length - 3) + ' Score: ' + (snake.length - 3);
+        localStorage.setItem('maxScore', snake.length - 3);
+    } else if (!(localStorage.getItem('maxScore'))) {
+        localStorage.setItem('maxScore', '0');
+    }
 
 
 
+}
+
+//play
 function gameTime() {
     setInterval(function() {
         drawPlayground('black');
-        drawSnake(snake, currentColor);
         drawApple(apple, nextColor);
         increaseSnake();
         nextApple();
+        drawSnake(snake, currentColor);
+        setScore();
         movingSnake(snake);
     }, 120);
 }
